@@ -1,0 +1,1323 @@
+/* =========================================================
+   PAGE 4 — DARK DEVELOPER CARD GAME
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #05070a;
+    --panel: #0b0f14;
+    --panel2: #10151c;
+    --line: rgba(255,255,255,0.08);
+    --text: #e9edf2;
+    --muted: #727b86;
+    --green: #00ff9c;
+    --blue: #00b7ff;
+    --red: #ff315a;
+    --gold: #d7ad62;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #101722 0%,
+            #070a0f 45%,
+            #030405 100%
+        );
+
+    color: var(--text);
+
+    font-family:
+        "Segoe UI",
+        Consolas,
+        monospace;
+}
+
+
+/* =========================================================
+   LOADING SCREEN
+   ========================================================= */
+
+#loadingScreen {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: #030507;
+
+    transition: opacity 0.7s ease,
+                visibility 0.7s ease;
+}
+
+#loadingScreen.hide {
+
+    opacity: 0;
+
+    visibility: hidden;
+}
+
+
+.loading-terminal {
+
+    width: min(520px, 85vw);
+
+    border: 1px solid rgba(0,255,156,0.25);
+
+    background: rgba(8,12,17,0.95);
+
+    box-shadow:
+        0 0 50px rgba(0,255,156,0.06),
+        inset 0 0 30px rgba(255,255,255,0.015);
+}
+
+
+.terminal-top {
+
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 0 14px;
+
+    border-bottom: 1px solid var(--line);
+
+    color: #777f88;
+
+    font-size: 11px;
+}
+
+.dot {
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+}
+
+.dot.red {
+    background: #ff5f56;
+}
+
+.dot.yellow {
+    background: #ffbd2e;
+}
+
+.dot.green {
+    background: #27c93f;
+}
+
+.terminal-title {
+    margin-left: 8px;
+}
+
+
+.loading-content {
+
+    padding: 42px 35px 38px;
+
+    text-align: center;
+}
+
+.loading-label {
+
+    color: var(--green);
+
+    letter-spacing: 3px;
+
+    font-size: 11px;
+
+    margin-bottom: 18px;
+}
+
+.loading-number {
+
+    font-size: 52px;
+
+    font-weight: 700;
+
+    letter-spacing: -3px;
+
+    margin-bottom: 20px;
+}
+
+.loading-bar {
+
+    height: 5px;
+
+    background: #171c22;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+}
+
+#loadingFill {
+
+    width: 1%;
+
+    height: 100%;
+
+    background: var(--green);
+
+    box-shadow: 0 0 15px var(--green);
+
+    transition: width 0.03s linear;
+}
+
+#loadingMessage {
+
+    margin-top: 15px;
+
+    color: #656e78;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   GAME
+   ========================================================= */
+
+#game {
+
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+
+    min-height: 600px;
+
+    opacity: 0;
+
+    transition: opacity 0.8s ease;
+}
+
+#game.show {
+    opacity: 1;
+}
+
+
+/* Developer grid */
+
+.developer-grid {
+
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+
+    mask-image:
+        radial-gradient(
+            circle at center,
+            black,
+            transparent 80%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.game-header {
+
+    position: absolute;
+
+    top: 24px;
+    left: 35px;
+    right: 35px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    z-index: 10;
+}
+
+.page-code {
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: var(--muted);
+}
+
+.page-code span {
+    color: var(--green);
+}
+
+.game-title {
+
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    color: #7c8792;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.top-cards,
+.bottom-cards {
+
+    position: absolute;
+
+    display: flex;
+
+    gap: 18px;
+
+    z-index: 5;
+}
+
+.top-cards {
+
+    top: 82px;
+    left: 38px;
+}
+
+.bottom-cards {
+
+    right: 38px;
+    bottom: 78px;
+}
+
+
+/* Card slot */
+
+.card-slot {
+
+    width: 85px;
+    height: 120px;
+
+    perspective: 900px;
+}
+
+
+/* Actual card */
+
+.playing-card {
+
+    width: 100%;
+    height: 100%;
+
+    perspective: 900px;
+}
+
+.card-inner {
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform 0.9s cubic-bezier(.2,.7,.2,1);
+
+}
+
+.card-front,
+.card-back {
+
+    position: absolute;
+
+    inset: 0;
+
+    backface-visibility: hidden;
+
+    border-radius: 9px;
+}
+
+
+/* =========================================================
+   DRAGON CARD BACK
+   ========================================================= */
+
+.card-back {
+
+    padding: 5px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #242a32,
+            #080a0d
+        );
+
+    border: 1px solid #555f69;
+
+    box-shadow:
+        0 14px 25px rgba(0,0,0,0.5),
+        inset 0 0 0 2px #11151a;
+
+    transform: rotateY(0deg);
+}
+
+.dragon-border {
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 6px;
+
+    border: 1px solid rgba(215,173,98,0.65);
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            transparent 0,
+            transparent 7px,
+            rgba(215,173,98,0.06) 8px,
+            transparent 9px
+        );
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.dragon-border::before {
+
+    content: "🐉";
+
+    position: absolute;
+
+    font-size: 45px;
+
+    opacity: 0.15;
+
+    filter: grayscale(1);
+
+    transform: rotate(-12deg);
+
+}
+
+.dragon-border::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 7px;
+
+    border:
+
+        1px solid
+        rgba(255,255,255,0.12);
+
+    border-radius: 4px;
+}
+
+.dragon-center {
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #090b0f;
+
+    border: 1px solid rgba(215,173,98,0.5);
+
+    box-shadow:
+        0 0 20px rgba(215,173,98,0.08);
+
+    font-size: 23px;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   NORMAL CARD FRONT
+   ========================================================= */
+
+.card-front {
+
+    padding: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f3f3f3,
+            #bfc4c8
+        );
+
+    color: #16191d;
+
+    border: 1px solid white;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.55);
+
+    transform: rotateY(180deg);
+}
+
+.card-corner {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 9px;
+
+    font-weight: 900;
+}
+
+.card-corner.bottom {
+
+    position: absolute;
+
+    right: 9px;
+    bottom: 9px;
+
+    transform: rotate(180deg);
+
+}
+
+.dragon-symbol {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    font-size: 34px;
+
+    filter:
+        grayscale(1)
+        contrast(1.4);
+
+    opacity: 0.75;
+}
+
+
+/* =========================================================
+   COIN VAULT
+   ========================================================= */
+
+.coin-vault {
+
+    position: absolute;
+
+    top: 73px;
+    right: 35px;
+
+    width: 160px;
+
+    z-index: 10;
+
+    filter:
+        drop-shadow(
+            0 10px 25px rgba(0,0,0,0.5)
+        );
+}
+
+.vault-top,
+.vault-bottom {
+
+    height: 13px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #4a525b,
+            #151a20,
+            #5a626a
+        );
+
+    border: 1px solid #68717a;
+}
+
+.vault-body {
+
+    height: 65px;
+
+    margin-top: -6px;
+    margin-bottom: -6px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #343b43,
+            #0c1015,
+            #343b43
+        );
+
+    border-left: 1px solid #68717a;
+    border-right: 1px solid #68717a;
+
+    box-shadow:
+        inset 0 0 15px rgba(0,0,0,0.8);
+}
+
+.vault-body small {
+
+    display: block;
+
+    color: #69737e;
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+}
+
+.vault-body strong {
+
+    display: inline-block;
+
+    font-size: 25px;
+
+    line-height: 25px;
+
+    color: var(--gold);
+}
+
+.coin-label {
+
+    font-size: 7px;
+
+    color: #777;
+
+    margin-left: 3px;
+}
+
+.coin-icon {
+
+    font-size: 21px;
+
+    color: var(--gold);
+}
+
+
+/* =========================================================
+   MOVING COINS
+   ========================================================= */
+
+.moving-coins {
+
+    position: fixed;
+
+    top: 105px;
+    right: 105px;
+
+    z-index: 100;
+
+    opacity: 0;
+
+    font-size: 25px;
+
+    pointer-events: none;
+}
+
+.moving-coins.animate {
+
+    animation:
+        coinTravel 1.5s
+        cubic-bezier(.6,0,.2,1)
+        forwards;
+}
+
+@keyframes coinTravel {
+
+    0% {
+
+        opacity: 1;
+
+        transform:
+            translate(0,0)
+            scale(1);
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(
+                -55vw,
+                65vh
+            )
+            scale(1.6);
+
+    }
+
+}
+
+
+/* =========================================================
+   GAME CENTER
+   ========================================================= */
+
+.game-center {
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: 500px;
+
+    max-width: 90vw;
+
+    text-align: center;
+
+    z-index: 20;
+}
+
+.system-text {
+
+    color: #59636d;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 10px;
+}
+
+.blink {
+
+    color: var(--green);
+
+    animation: blink 1.2s infinite;
+}
+
+@keyframes blink {
+
+    50% {
+        opacity: 0.2;
+    }
+
+}
+
+.instruction {
+
+    color: #cbd1d7;
+
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   CENTER CARDS
+   ========================================================= */
+
+.center-cards {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 25px;
+
+    height: 220px;
+
+    margin-bottom: 25px;
+}
+
+.center-card-container {
+
+    width: 130px;
+    height: 185px;
+
+    perspective: 1000px;
+
+    opacity: 0;
+
+    transform:
+        translateY(30px)
+        scale(0.8);
+}
+
+.center-card {
+
+    width: 130px;
+    height: 185px;
+}
+
+.king-front,
+.queen-front {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f8f8f8,
+            #aeb4ba
+        );
+
+    overflow: hidden;
+}
+
+.royal-corner {
+
+    position: absolute;
+
+    top: 10px;
+    left: 12px;
+
+    font-size: 18px;
+
+    font-weight: 900;
+}
+
+.royal-corner.bottom {
+
+    top: auto;
+
+    left: auto;
+
+    right: 12px;
+    bottom: 10px;
+
+    transform: rotate(180deg);
+}
+
+.royal-title {
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    font-weight: 900;
+
+    margin-bottom: 12px;
+}
+
+.royal-dragon {
+
+    font-size: 50px;
+
+    filter:
+        grayscale(1)
+        contrast(1.3);
+
+    margin-bottom: 8px;
+}
+
+.royal-symbol {
+
+    font-size: 35px;
+}
+
+.king-front {
+
+    border-color:
+        rgba(215,173,98,0.8);
+}
+
+.queen-front {
+
+    border-color:
+        rgba(220,220,220,0.8);
+}
+
+
+/* Card entry */
+
+.center-card-container.active {
+
+    animation:
+        cardEnter 0.9s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
+
+@keyframes cardEnter {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(40px)
+            scale(0.75)
+            rotateY(70deg);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1)
+            rotateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+#gambleButton,
+#revealButton {
+
+    border: 1px solid rgba(0,255,156,0.45);
+
+    background:
+        linear-gradient(
+            180deg,
+            #121a1d,
+            #080c0f
+        );
+
+    color: var(--green);
+
+    font-family: Consolas, monospace;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s,
+        box-shadow 0.25s,
+        background 0.25s;
+}
+
+#gambleButton {
+
+    width: 190px;
+
+    padding: 15px 25px;
+
+    font-size: 12px;
+}
+
+#gambleButton:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 0 25px
+        rgba(0,255,156,0.12);
+}
+
+#gambleButton:disabled {
+
+    opacity: 0.35;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+.button-icon {
+
+    margin-right: 8px;
+}
+
+#revealButton {
+
+    display: none;
+
+    margin: 15px auto 0;
+
+    padding: 10px 22px;
+
+    font-size: 9px;
+}
+
+#revealButton.show {
+
+    display: block;
+}
+
+
+/* =========================================================
+   MORAL BOX
+   ========================================================= */
+
+.moral-box {
+
+    position: fixed;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.8);
+
+    width: min(620px, 88vw);
+
+    z-index: 200;
+
+    background:
+        rgba(8,12,17,0.97);
+
+    border:
+        1px solid rgba(0,255,156,0.25);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.75),
+        0 0 40px rgba(0,255,156,0.04);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 0.5s,
+        transform 0.5s,
+        visibility 0.5s;
+}
+
+.moral-box.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+}
+
+.moral-header {
+
+    height: 37px;
+
+    padding: 0 15px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-bottom: 1px solid var(--line);
+
+    color: #626c77;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+.moral-header span:first-child {
+
+    color: var(--green);
+}
+
+.moral-content {
+
+    padding: 35px 45px 40px;
+
+    text-align: center;
+}
+
+.quote-symbol {
+
+    color: var(--gold);
+
+    font-family: Georgia, serif;
+
+    font-size: 50px;
+
+    height: 30px;
+}
+
+.quote-symbol.closing {
+
+    transform: rotate(180deg);
+
+    margin-top: 10px;
+}
+
+#moralText {
+
+    color: #c4cbd1;
+
+    line-height: 1.8;
+
+    font-size: 14px;
+
+    max-width: 500px;
+
+    margin: 20px auto;
+
+}
+
+
+/* =========================================================
+   NEXT BUTTON
+   ========================================================= */
+
+#nextButton {
+
+    position: fixed;
+
+    right: 35px;
+    bottom: 25px;
+
+    display: none;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 13px 19px;
+
+    background:
+        rgba(10,14,18,0.9);
+
+    border:
+        1px solid rgba(255,255,255,0.12);
+
+    color: #b8c0c8;
+
+    font-family: Consolas, monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    z-index: 600;
+
+    transition: 0.25s;
+}
+
+#nextButton.show {
+
+    display: flex;
+
+    animation:
+        nextAppear 0.7s ease forwards;
+}
+
+#nextButton:hover {
+
+    border-color:
+        rgba(0,255,156,0.4);
+
+    color: var(--green);
+
+    transform: translateX(4px);
+}
+
+.next-arrow {
+
+    font-size: 18px;
+}
+
+@keyframes nextAppear {
+
+    from {
+
+        opacity: 0;
+        transform: translateY(10px);
+
+    }
+
+    to {
+
+        opacity: 1;
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.terminal-status {
+
+    position: fixed;
+
+    left: 35px;
+    bottom: 25px;
+
+    display: flex;
+
+    gap: 20px;
+
+    color: #3f4851;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+
+    z-index: 20;
+}
+
+.terminal-status span:first-child {
+
+    color: #626d78;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .top-cards {
+        top: 75px;
+        left: 15px;
+        gap: 7px;
+    }
+
+    .bottom-cards {
+        right: 15px;
+        bottom: 65px;
+        gap: 7px;
+    }
+
+    .card-slot {
+        width: 58px;
+        height: 82px;
+    }
+
+    .dragon-center {
+        width: 30px;
+        height: 30px;
+        font-size: 15px;
+    }
+
+    .dragon-border::before {
+        font-size: 30px;
+    }
+
+    .coin-vault {
+        top: 70px;
+        right: 15px;
+        width: 120px;
+        transform: scale(0.85);
+        transform-origin: top right;
+    }
+
+    .game-center {
+        width: 95vw;
+    }
+
+    .center-cards {
+        height: 180px;
+        gap: 10px;
+    }
+
+    .center-card-container,
+    .center-card {
+        width: 105px;
+        height: 150px;
+    }
+
+    .royal-dragon {
+        font-size: 40px;
+    }
+
+    .royal-title {
+        font-size: 9px;
+    }
+
+    .moral-content {
+        padding: 25px;
+    }
+
+    #moralText {
+        font-size: 12px;
+    }
+
+    .terminal-status {
+        display: none;
+    }
+
+    .game-title {
+        display: none;
+    }
+}

@@ -1,0 +1,574 @@
+/* ================================
+   GLOBAL
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(70, 90, 110, 0.14),
+            transparent 35%
+        ),
+        #070a0e;
+
+    color: #e7e7e7;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    overflow-x: hidden;
+}
+
+
+/* ================================
+   BACKGROUND
+================================ */
+
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.015) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.015) 1px,
+            transparent 1px
+        );
+
+    background-size: 40px 40px;
+
+    z-index: -2;
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.page-header {
+    text-align: center;
+
+    padding: 55px 20px 30px;
+}
+
+.terminal-line {
+    font-size: 13px;
+
+    color: #777;
+
+    margin-bottom: 20px;
+}
+
+.green {
+    color: #65d48b;
+}
+
+.blue {
+    color: #66aaff;
+}
+
+.cursor {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+
+    0%, 50% {
+        opacity: 1;
+    }
+
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+
+.page-header h1 {
+
+    font-family: Georgia, serif;
+
+    font-size: clamp(32px, 6vw, 55px);
+
+    letter-spacing: 2px;
+
+    color: #f1f1f1;
+
+    text-shadow:
+        0 0 20px rgba(255,255,255,0.12);
+}
+
+.subtitle {
+
+    margin-top: 12px;
+
+    color: #777;
+
+    font-size: 14px;
+
+    letter-spacing: 1px;
+}
+
+
+/* ================================
+   LETTER CONTAINER
+================================ */
+
+.letters-container {
+
+    width: min(1100px, 92%);
+
+    margin: 20px auto 50px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 35px;
+}
+
+
+/* ================================
+   ROYAL LETTER
+================================ */
+
+.royal-letter {
+
+    position: relative;
+
+    min-height: 240px;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #332c20,
+            #1c1914
+        );
+
+    border: 1px solid #62553d;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.55),
+        inset 0 0 30px rgba(0,0,0,0.5);
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+
+    /* closed letter */
+    height: 240px;
+}
+
+
+/* hover */
+
+.royal-letter:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.7),
+        0 0 25px rgba(180,150,90,0.08);
+}
+
+
+/* ================================
+   PAPER
+================================ */
+
+.letter-content {
+
+    position: absolute;
+
+    left: 20px;
+    right: 20px;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    min-height: 175px;
+
+    padding: 40px 35px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d5bd88,
+            #b89d68
+        );
+
+    color: #2b2418;
+
+    border-radius: 5px;
+
+    opacity: 0;
+
+    transform-origin: center;
+
+    transition:
+        opacity 0.6s ease,
+        transform 0.7s ease;
+
+    z-index: 2;
+
+    box-shadow:
+        inset 0 0 30px rgba(70,40,10,0.35);
+}
+
+
+/* ================================
+   OPEN LETTER
+================================ */
+
+.royal-letter.open {
+
+    height: auto;
+
+    min-height: 500px;
+
+    cursor: pointer;
+}
+
+.royal-letter.open .letter-content {
+
+    position: relative;
+
+    top: auto;
+
+    left: auto;
+    right: auto;
+
+    transform: scale(1);
+
+    margin: 35px 25px;
+
+    opacity: 1;
+}
+
+
+/* ================================
+   ROLLS
+================================ */
+
+.letter-roll {
+
+    position: absolute;
+
+    left: 12px;
+    right: 12px;
+
+    height: 28px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #8d754b,
+            #d0b47a,
+            #765e39
+        );
+
+    border: 1px solid #5c472a;
+
+    box-shadow:
+        0 5px 12px rgba(0,0,0,0.5);
+
+    z-index: 5;
+
+    transition:
+        transform 0.8s ease;
+}
+
+
+/* circular ends */
+
+.letter-roll::before,
+.letter-roll::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 42px;
+    height: 42px;
+
+    top: -8px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #d4bb80 0%,
+            #987d4d 50%,
+            #5e492b 100%
+        );
+
+    border: 2px solid #66502f;
+
+    box-shadow:
+        inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+.letter-roll::before {
+    left: -10px;
+}
+
+.letter-roll::after {
+    right: -10px;
+}
+
+.top-roll {
+    top: 35px;
+}
+
+.bottom-roll {
+    bottom: 35px;
+}
+
+
+/* ================================
+   OPEN ANIMATION
+================================ */
+
+.royal-letter.open .top-roll {
+
+    transform:
+        translateY(-120px)
+        rotate(-3deg);
+}
+
+.royal-letter.open .bottom-roll {
+
+    transform:
+        translateY(120px)
+        rotate(3deg);
+}
+
+
+/* ================================
+   LETTER TEXT
+================================ */
+
+.letter-number {
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    color: #665334;
+
+    margin-bottom: 8px;
+}
+
+.letter-content h2 {
+
+    font-family: Georgia, serif;
+
+    font-size: 28px;
+
+    margin-bottom: 22px;
+
+    color: #302615;
+}
+
+.poem {
+
+    font-family: Georgia, serif;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+    text-align: center;
+}
+
+.poem p {
+
+    margin-bottom: 15px;
+}
+
+
+/* ================================
+   TAP TO OPEN
+================================ */
+
+.open-text {
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    color: #bba678;
+
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    z-index: 8;
+
+    transition:
+        opacity 0.4s ease;
+}
+
+.royal-letter.open .open-text {
+
+    opacity: 0;
+}
+
+
+/* ================================
+   NEXT BUTTON
+================================ */
+
+.next-section {
+
+    text-align: center;
+
+    padding:
+        10px 20px 60px;
+}
+
+.next-button {
+
+    position: relative;
+
+    padding: 13px 27px;
+
+    min-width: 130px;
+
+    border-radius: 30px;
+
+    background: transparent;
+
+    border: 1px solid #58606a;
+
+    color: #d5d9dd;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    transition:
+        all 0.3s ease;
+}
+
+.next-button span {
+
+    margin-left: 8px;
+
+    font-size: 17px;
+}
+
+.next-button:hover {
+
+    background: rgba(255,255,255,0.06);
+
+    border-color: #aaa;
+
+    transform: translateX(3px);
+
+    box-shadow:
+        0 0 20px rgba(255,255,255,0.08);
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 700px) {
+
+    .page-header {
+
+        padding-top: 35px;
+    }
+
+    .page-header h1 {
+
+        font-size: 32px;
+    }
+
+    .subtitle {
+
+        font-size: 12px;
+    }
+
+    .letters-container {
+
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+    .royal-letter {
+
+        min-height: 220px;
+
+        height: 220px;
+    }
+
+    .letter-content {
+
+        left: 15px;
+        right: 15px;
+
+        padding: 30px 20px;
+    }
+
+    .royal-letter.open {
+
+        min-height: 520px;
+    }
+
+    .royal-letter.open .letter-content {
+
+        margin: 25px 15px;
+    }
+
+    .poem {
+
+        font-size: 15px;
+
+        line-height: 1.7;
+    }
+
+    .letter-content h2 {
+
+        font-size: 24px;
+    }
+}

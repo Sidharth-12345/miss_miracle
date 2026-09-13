@@ -1,0 +1,851 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    background: #050607;
+    color: #f3f3f3;
+    font-family: "Fira Code", monospace;
+}
+
+
+/* =========================================
+   PROFESSIONAL DEVELOPER BACKGROUND
+========================================= */
+
+.background-grid {
+    position: fixed;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+
+    pointer-events: none;
+}
+
+.background-grid::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(100, 0, 15, 0.12),
+            transparent 55%
+        );
+}
+
+
+/* =========================================
+   CODE DECORATIONS
+========================================= */
+
+.code-decoration {
+    position: fixed;
+
+    font-family: "Fira Code", monospace;
+
+    font-size: 25px;
+
+    line-height: 2;
+
+    color: rgba(255, 255, 255, 0.08);
+
+    user-select: none;
+
+    pointer-events: none;
+}
+
+.code-left {
+    left: 30px;
+    top: 30%;
+}
+
+.code-right {
+    right: 30px;
+    bottom: 25%;
+    text-align: right;
+}
+
+
+/* =========================================
+   SCREEN SYSTEM
+========================================= */
+
+.screen {
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+.screen.active {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+/* =========================================
+   TERMINAL LOADING WINDOW
+========================================= */
+
+.terminal-window {
+
+    width: min(600px, 90%);
+
+    background: rgba(10, 11, 13, 0.95);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.7),
+        0 0 60px rgba(120, 0, 20, 0.08);
+
+    overflow: hidden;
+}
+
+
+/* Terminal header */
+
+.terminal-header {
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 16px;
+
+    background: #0d0f11;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.terminal-dots {
+
+    display: flex;
+
+    gap: 7px;
+}
+
+.terminal-dots span {
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: #555;
+}
+
+.terminal-title {
+
+    position: absolute;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 11px;
+
+    color: #666;
+}
+
+
+/* Terminal content */
+
+.terminal-content {
+
+    padding: 42px 35px 45px;
+}
+
+.terminal-line {
+
+    display: flex;
+
+    gap: 12px;
+
+    color: #c8c8c8;
+
+    font-size: 14px;
+
+    min-height: 24px;
+}
+
+.prompt {
+    color: #a40020;
+
+    font-weight: bold;
+}
+
+
+/* Percentage */
+
+.loading-number {
+
+    margin-top: 30px;
+
+    font-family: "Fira Code", monospace;
+
+    font-size: 48px;
+
+    font-weight: 500;
+
+    letter-spacing: -3px;
+
+    color: #e9e9e9;
+
+    text-align: center;
+}
+
+.loading-number span:last-child {
+    color: #6d071b;
+
+    font-size: 25px;
+
+    letter-spacing: 0;
+}
+
+
+/* Progress */
+
+.progress-container {
+
+    width: 100%;
+
+    height: 5px;
+
+    margin-top: 25px;
+
+    background: #1a1c1f;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+}
+
+#progressBar {
+
+    width: 0%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #52000f,
+            #9d102d,
+            #d32b4d
+        );
+
+    box-shadow:
+        0 0 15px rgba(160, 10, 40, 0.5);
+
+    transition: width 0.05s linear;
+}
+
+
+/* Status */
+
+.loading-status {
+
+    margin-top: 18px;
+
+    text-align: center;
+
+    font-size: 11px;
+
+    color: #666;
+
+    min-height: 18px;
+}
+
+
+/* =========================================
+   HEART SCREEN
+========================================= */
+
+.heart-container {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* =========================================
+   DEVELOPER MESSAGE
+========================================= */
+
+.developer-message {
+
+    position: absolute;
+
+    top: 9%;
+
+    font-family: "Caveat", cursive;
+
+    font-style: italic;
+
+    font-weight: 700;
+
+    font-size: clamp(30px, 5vw, 58px);
+
+    letter-spacing: 1px;
+
+    color: #dedede;
+
+    text-align: center;
+
+    opacity: 0;
+
+    transform: translateY(20px);
+
+    transition:
+        opacity 1.5s ease,
+        transform 1.5s ease;
+
+    text-shadow:
+        0 0 20px rgba(255, 255, 255, 0.08);
+}
+
+.developer-message.show {
+
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   HEART
+========================================= */
+
+.heart-stage {
+
+    position: relative;
+
+    width: min(380px, 72vw);
+
+    height: min(340px, 62vh);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+/* SVG */
+
+.heart-svg {
+
+    width: 100%;
+
+    height: 100%;
+
+    overflow: visible;
+
+    filter:
+        drop-shadow(0 0 12px rgba(130, 0, 25, 0.45));
+}
+
+
+/* Heart outline */
+
+.heart-outline {
+
+    fill: none;
+
+    stroke: #b31738;
+
+    stroke-width: 4;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+
+    stroke-dasharray: 1000;
+
+    stroke-dashoffset: 1000;
+}
+
+
+/* Filled heart */
+
+.heart-fill {
+
+    fill: #650015;
+
+    opacity: 0;
+
+    transform-origin: center;
+
+    transform-box: fill-box;
+
+    transform: scale(0.96);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+
+    filter:
+        drop-shadow(
+            inset 0 0 10px rgba(255, 255, 255, 0.2)
+        );
+}
+
+
+/* Heart highlights */
+
+.heart-highlight {
+
+    fill: rgba(255, 255, 255, 0.20);
+
+    opacity: 0;
+}
+
+.heart-highlight-small {
+
+    fill: rgba(255, 255, 255, 0.42);
+
+    opacity: 0;
+}
+
+.heart-shine {
+
+    fill: none;
+
+    stroke: rgba(255, 255, 255, 0.35);
+
+    stroke-width: 5;
+
+    stroke-linecap: round;
+
+    opacity: 0;
+}
+
+
+/* =========================================
+   HEART DRAWING
+========================================= */
+
+.heart-stage.draw .heart-outline {
+
+    animation:
+        drawHeart 6s cubic-bezier(.65, 0, .25, 1)
+        forwards;
+}
+
+.heart-stage.draw .heart-fill {
+
+    animation:
+        fillHeart 2s ease 5s forwards;
+}
+
+.heart-stage.draw .heart-highlight {
+
+    animation:
+        revealHighlight 1.5s ease 6s forwards;
+}
+
+.heart-stage.draw .heart-highlight-small {
+
+    animation:
+        revealHighlight 1.5s ease 6.2s forwards;
+}
+
+.heart-stage.draw .heart-shine {
+
+    animation:
+        revealHighlight 1.5s ease 6.3s forwards;
+}
+
+
+/* =========================================
+   HEART PUMP
+========================================= */
+
+.heart-stage.pump .heart-svg {
+
+    animation:
+        heartPump 1s ease-in-out infinite;
+}
+
+
+/* =========================================
+   FINAL LADY MESSAGE
+========================================= */
+
+.lady-message {
+
+    position: absolute;
+
+    right: 8%;
+
+    bottom: 13%;
+
+    max-width: 500px;
+
+    font-family: "Caveat", cursive;
+
+    font-style: italic;
+
+    font-weight: 700;
+
+    font-size: clamp(25px, 4vw, 45px);
+
+    color: #dedede;
+
+    text-align: right;
+
+    opacity: 0;
+
+    transform: translateX(40px);
+
+    transition:
+        opacity 1.5s ease,
+        transform 1.5s ease;
+
+    text-shadow:
+        0 0 20px rgba(255, 255, 255, 0.08);
+}
+
+.lady-message.show {
+
+    opacity: 1;
+
+    transform: translateX(0);
+}
+
+
+/* =========================================
+   NEXT HEART BUTTON
+========================================= */
+
+.next-heart-button {
+
+    position: absolute;
+
+    bottom: 7%;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%)
+        scale(0.8);
+
+    width: 190px;
+
+    height: 65px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #3b000c,
+            #710019
+        );
+
+    color: white;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.5);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 1s ease,
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.next-heart-button.active {
+
+    opacity: 1;
+
+    pointer-events: auto;
+
+    transform:
+        translateX(-50%)
+        scale(1);
+}
+
+.next-heart-button.active:hover {
+
+    transform:
+        translateX(-50%)
+        scale(1.06);
+
+    box-shadow:
+        0 0 35px rgba(150, 10, 40, 0.45);
+}
+
+.next-heart-button:active {
+
+    transform:
+        translateX(-50%)
+        scale(0.96);
+}
+
+.button-heart {
+
+    font-size: 27px;
+
+    color: #ffb5c4;
+
+    animation:
+        buttonBeat 1.2s infinite;
+}
+
+.button-text {
+
+    font-family: "Fira Code", monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   PARTICLES
+========================================= */
+
+.particle {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    font-size: 18px;
+
+    pointer-events: none;
+
+    z-index: 10;
+
+    animation:
+        particleFly 1s ease-out forwards;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes drawHeart {
+
+    0% {
+        stroke-dashoffset: 1000;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+
+@keyframes fillHeart {
+
+    0% {
+        opacity: 0;
+        transform: scale(0.90);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+@keyframes revealHighlight {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes heartPump {
+
+    0% {
+        transform: scale(1);
+    }
+
+    35% {
+        transform: scale(1.06);
+    }
+
+    60% {
+        transform: scale(0.98);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+@keyframes particleFly {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.2)
+            rotate(0deg);
+    }
+
+    15% {
+
+        opacity: 1;
+
+        transform:
+            translate(
+                calc(-50% + var(--x) * 0.15),
+                calc(-50% + var(--y) * 0.15)
+            )
+            scale(1);
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                calc(-50% + var(--y))
+            )
+            scale(0.3)
+            rotate(30deg);
+    }
+}
+
+
+@keyframes buttonBeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .code-decoration {
+        display: none;
+    }
+
+    .terminal-content {
+        padding: 35px 22px 40px;
+    }
+
+    .terminal-title {
+        font-size: 9px;
+    }
+
+    .developer-message {
+        top: 8%;
+        padding: 0 20px;
+    }
+
+    .heart-stage {
+        width: 310px;
+        height: 300px;
+    }
+
+    .lady-message {
+        right: 6%;
+        bottom: 16%;
+
+        max-width: 320px;
+
+        font-size: 29px;
+    }
+
+    .next-heart-button {
+        bottom: 5%;
+    }
+}

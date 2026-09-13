@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Page 4 | The Gamble</title>
+
+    <link rel="stylesheet" href="page4.css">
+</head>
+
+<body>
+
+    <!-- ================= LOADING SCREEN ================= -->
+
+    <div id="loadingScreen">
+
+        <div class="loading-terminal">
+
+            <div class="terminal-top">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+
+                <span class="terminal-title">
+                    developer_game.exe
+                </span>
+            </div>
+
+            <div class="loading-content">
+
+                <div class="loading-label">
+                    INITIALIZING GAME ENGINE
+                </div>
+
+                <div class="loading-number">
+                    <span id="loadingPercent">1</span>%
+                </div>
+
+                <div class="loading-bar">
+                    <div id="loadingFill"></div>
+                </div>
+
+                <div id="loadingMessage">
+                    Loading cards...
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= MAIN GAME ================= -->
+
+    <main id="game">
+
+        <div class="developer-grid"></div>
+
+        <!-- Header -->
+
+        <div class="game-header">
+
+            <div class="page-code">
+                <span> </span> <span> </span>
+            </div>
+
+            <div class="game-title">
+                THE GAMBLE
+            </div>
+
+        </div>
+
+
+        <!-- ================= TOP LEFT CARDS ================= -->
+
+        <section class="top-cards">
+
+            <div class="card-slot top-slot">
+                <div class="playing-card">
+                    <div class="card-inner">
+
+                        <div class="card-front">
+                            <div class="card-corner top">
+                                <span>?</span>
+                                <span>🐉</span>
+                            </div>
+
+                            <div class="dragon-symbol">
+                                🐉
+                            </div>
+
+                            <div class="card-corner bottom">
+                                <span>🐉</span>
+                                <span>?</span>
+                            </div>
+                        </div>
+
+                        <div class="card-back">
+                            <div class="dragon-border">
+                                <div class="dragon-center">
+                                    🐉
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card-slot top-slot">
+                <div class="playing-card">
+                    <div class="card-inner">
+
+                        <div class="card-front">
+                            <div class="card-corner top">
+                                <span>?</span>
+                                <span>🐉</span>
+                            </div>
+
+                            <div class="dragon-symbol">
+                                🐉
+                            </div>
+
+                            <div class="card-corner bottom">
+                                <span>🐉</span>
+                                <span>?</span>
+                            </div>
+                        </div>
+
+                        <div class="card-back">
+                            <div class="dragon-border">
+                                <div class="dragon-center">
+                                    🐉
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card-slot top-slot">
+                <div class="playing-card">
+                    <div class="card-inner">
+
+                        <div class="card-front">
+                            <div class="card-corner top">
+                                <span>?</span>
+                                <span>🐉</span>
+                            </div>
+
+                            <div class="dragon-symbol">
+                                🐉
+                            </div>
+
+                            <div class="card-corner bottom">
+                                <span>🐉</span>
+                                <span>?</span>
+                            </div>
+                        </div>
+
+                        <div class="card-back">
+                            <div class="dragon-border">
+                                <div class="dragon-center">
+                                    🐉
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- ================= COIN VAULT ================= -->
+
+        <div class="coin-vault" id="coinVault">
+
+            <div class="vault-top"></div>
+
+            <div class="vault-body">
+
+                <span class="coin-icon">◉</span>
+
+                <div>
+                    <small>VIRTUAL VAULT</small>
+                    <strong id="coinAmount">500</strong>
+                    <span class="coin-label">COINS</span>
+                </div>
+
+            </div>
+
+            <div class="vault-bottom"></div>
+
+        </div>
+
+
+        <!-- ================= COIN ANIMATION ================= -->
+
+        <div id="movingCoins" class="moving-coins">
+            🪙
+        </div>
+
+
+        <!-- ================= CENTER GAME ================= -->
+
+        <section class="game-center">
+
+            <div class="system-text">
+                <span class="blink">●</span>
+                SYSTEM READY
+            </div>
+
+            <div class="instruction" id="instruction">
+                TWO CARDS. ONE CHANCE.
+            </div>
+
+
+            <!-- CENTER CARDS -->
+
+            <div class="center-cards" id="centerCards">
+
+                <!-- Top card -->
+
+                <div class="center-card-container" id="kingCardContainer">
+
+                    <div class="playing-card center-card">
+
+                        <div class="card-inner">
+
+                            <div class="card-front king-front">
+
+                                <div class="royal-corner">
+                                    K
+                                </div>
+
+                                <div class="royal-title">
+                                    KING
+                                </div>
+
+                                <div class="royal-dragon">
+                                    🐉
+                                </div>
+
+                                <div class="royal-symbol">
+                                    ♛
+                                </div>
+
+                                <div class="royal-corner bottom">
+                                    K
+                                </div>
+
+                            </div>
+
+
+                            <div class="card-back">
+
+                                <div class="dragon-border">
+
+                                    <div class="dragon-center">
+                                        🐉
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Bottom card -->
+
+                <div class="center-card-container" id="queenCardContainer">
+
+                    <div class="playing-card center-card">
+
+                        <div class="card-inner">
+
+                            <div class="card-front queen-front">
+
+                                <div class="royal-corner">
+                                    Q
+                                </div>
+
+                                <div class="royal-title">
+                                    QUEEN
+                                </div>
+
+                                <div class="royal-dragon">
+                                    🐉
+                                </div>
+
+                                <div class="royal-symbol">
+                                    ♕
+                                </div>
+
+                                <div class="royal-corner bottom">
+                                    Q
+                                </div>
+
+                            </div>
+
+
+                            <div class="card-back">
+
+                                <div class="dragon-border">
+
+                                    <div class="dragon-center">
+                                        🐉
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Gamble -->
+
+            <button id="gambleButton">
+                <span class="button-icon">◈</span>
+                GAMBLE
+            </button>
+
+
+            <!-- Reveal -->
+
+            <button id="revealButton">
+                REVEAL CARDS
+            </button>
+
+        </section>
+
+
+        <!-- ================= BOTTOM RIGHT CARDS ================= -->
+
+        <section class="bottom-cards">
+
+            <div class="card-slot bottom-slot">
+                <div class="playing-card">
+                    <div class="card-inner">
+
+                        <div class="card-front">
+                            <div class="card-corner top">
+                                <span>?</span>
+                                <span>🐉</span>
+                            </div>
+
+                            <div class="dragon-symbol">
+                                🐉
+                            </div>
+
+                            <div class="card-corner bottom">
+                                <span>🐉</span>
+                                <span>?</span>
+                            </div>
+                        </div>
+
+                        <div class="card-back">
+                            <div class="dragon-border">
+                                <div class="dragon-center">
+                                    🐉
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card-slot bottom-slot">
+                <div class="playing-card">
+                    <div class="card-inner">
+
+                        <div class="card-front">
+                            <div class="card-corner top">
+                                <span>?</span>
+                                <span>🐉</span>
+                            </div>
+
+                            <div class="dragon-symbol">
+                                🐉
+                            </div>
+
+                            <div class="card-corner bottom">
+                                <span>🐉</span>
+                                <span>?</span>
+                            </div>
+                        </div>
+
+                        <div class="card-back">
+                            <div class="dragon-border">
+                                <div class="dragon-center">
+                                    🐉
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card-slot bottom-slot">
+                <div class="playing-card">
+                    <div class="card-inner">
+
+                        <div class="card-front">
+                            <div class="card-corner top">
+                                <span>?</span>
+                                <span>🐉</span>
+                            </div>
+
+                            <div class="dragon-symbol">
+                                🐉
+                            </div>
+
+                            <div class="card-corner bottom">
+                                <span>🐉</span>
+                                <span>?</span>
+                            </div>
+                        </div>
+
+                        <div class="card-back">
+                            <div class="dragon-border">
+                                <div class="dragon-center">
+                                    🐉
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- ================= MORAL MESSAGE ================= -->
+
+        <div id="moralBox" class="moral-box">
+
+            <div class="moral-header">
+                <span>// GAME_MESSAGE</span>
+                <span>● ONLINE</span>
+            </div>
+
+            <div class="moral-content">
+
+                <div class="quote-symbol">
+                    "
+                </div>
+
+                <p id="moralText">
+
+                    <!-- WRITE YOUR 50–60 WORD MORAL HERE -->
+
+                    WRITE YOUR MORAL OF THE GAME HERE.
+                    THIS SPACE IS RESERVED FOR YOUR PERSONAL
+                    MESSAGE. YOU CAN WRITE A 50–60 WORD MESSAGE
+                    ABOUT TRUST, CHOICES, RISKS, LOVE, LIFE OR
+                    WHATEVER YOU WANT HER TO UNDERSTAND.
+
+                </p>
+
+                <div class="quote-symbol closing">
+                    "
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= NEXT BUTTON ================= -->
+
+        <button id="nextButton">
+
+            <span>CONTINUE</span>
+
+            <span class="next-arrow">
+                →
+            </span>
+
+        </button>
+
+
+        <!-- Decorative terminal information -->
+
+        <div class="terminal-status">
+            <span>PLAYER_01</span>
+            <span>ENCRYPTED</span>
+            <span>GAME_SESSION: 04</span>
+        </div>
+
+    </main>
+
+
+    <script src="page4.js"></script>
+
+</body>
+</html>

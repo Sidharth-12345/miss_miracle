@@ -1,0 +1,1318 @@
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+
+    background:
+        radial-gradient(
+            circle at center,
+            #151922 0%,
+            #090b10 45%,
+            #050609 100%
+        );
+
+    color: #ffffff;
+
+    font-family:
+        "Segoe UI",
+        "Consolas",
+        monospace;
+
+    overflow-x: hidden;
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.page {
+
+    min-height: 100vh;
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    padding:
+        55px
+        clamp(18px, 5vw, 80px)
+        60px;
+}
+
+
+/* =====================================================
+   HEADING
+===================================================== */
+
+.main-heading {
+
+    font-size:
+        clamp(25px, 4vw, 52px);
+
+    font-weight: 700;
+
+    letter-spacing: 4px;
+
+    text-align: center;
+
+    color: #ffffff;
+
+    margin-bottom: 12px;
+
+    text-shadow:
+        0 0 10px rgba(255,255,255,0.15);
+}
+
+
+.sub-heading {
+
+    font-size:
+        clamp(10px, 1.4vw, 14px);
+
+    letter-spacing: 4px;
+
+    color: #737b8c;
+
+    text-align: center;
+
+    margin-bottom: 45px;
+}
+
+
+/* =====================================================
+   DOOR AREA
+===================================================== */
+
+.door-area {
+
+    width: 100%;
+
+    max-width: 1050px;
+
+    min-height: 650px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+}
+
+
+/* =====================================================
+   INITIAL CONSTRUCTION BOX
+===================================================== */
+
+.construction-box {
+
+    width: min(78vw, 700px);
+
+    height: min(58vh, 500px);
+
+    min-height: 350px;
+
+    border: 1px solid #323946;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.025),
+            rgba(255,255,255,0.005)
+        );
+
+    position: relative;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition:
+        transform 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
+
+    overflow: hidden;
+}
+
+
+.construction-box:hover {
+
+    transform: scale(1.015);
+
+    border-color: #6c7485;
+
+    box-shadow:
+        0 0 35px rgba(255,255,255,0.06);
+}
+
+
+/* Scan line */
+
+.construction-box::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 100%;
+
+    height: 1px;
+
+    background: #788292;
+
+    left: 0;
+
+    top: 0;
+
+    opacity: 0.25;
+
+    animation: scan 3s linear infinite;
+}
+
+
+@keyframes scan {
+
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(500px);
+    }
+}
+
+
+/* =====================================================
+   CORNERS
+===================================================== */
+
+.corner {
+
+    position: absolute;
+
+    width: 35px;
+
+    height: 35px;
+
+    border-color: #8b95a8;
+
+    opacity: 0.7;
+}
+
+
+.corner-tl {
+
+    top: 18px;
+    left: 18px;
+
+    border-top: 2px solid;
+    border-left: 2px solid;
+}
+
+
+.corner-tr {
+
+    top: 18px;
+    right: 18px;
+
+    border-top: 2px solid;
+    border-right: 2px solid;
+}
+
+
+.corner-bl {
+
+    bottom: 18px;
+    left: 18px;
+
+    border-bottom: 2px solid;
+    border-left: 2px solid;
+}
+
+
+.corner-br {
+
+    bottom: 18px;
+    right: 18px;
+
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+}
+
+
+/* =====================================================
+   BOX CONTENT
+===================================================== */
+
+.box-content {
+
+    text-align: center;
+
+    z-index: 2;
+}
+
+
+.box-icon {
+
+    font-size: 45px;
+
+    color: #9aa3b5;
+
+    margin-bottom: 20px;
+
+    animation:
+        iconPulse 2s ease-in-out infinite;
+}
+
+
+@keyframes iconPulse {
+
+    0%,
+    100% {
+        opacity: 0.45;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+
+.box-title {
+
+    font-size:
+        clamp(18px, 3vw, 30px);
+
+    letter-spacing: 6px;
+
+    font-weight: 600;
+
+    margin-bottom: 12px;
+}
+
+
+.box-text {
+
+    font-size:
+        clamp(10px, 1.5vw, 14px);
+
+    color: #70798a;
+
+    letter-spacing: 3px;
+}
+
+
+/* =====================================================
+   DOOR SCENE
+===================================================== */
+
+.door-scene {
+
+    display: none;
+
+    perspective: 1200px;
+
+    width: 100%;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+.door-scene.show {
+
+    display: flex;
+}
+
+
+/* =====================================================
+   DOOR FRAME
+===================================================== */
+
+.door-frame {
+
+    width: min(72vw, 600px);
+
+    height: min(72vh, 650px);
+
+    min-height: 430px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #16110c,
+            #302116,
+            #120d09
+        );
+
+    padding: 18px;
+
+    position: relative;
+
+    box-shadow:
+
+        0 30px 70px rgba(0,0,0,0.8),
+
+        inset 0 0 0 2px #5a4028,
+
+        inset 0 0 35px rgba(0,0,0,0.9);
+
+    transform-style: preserve-3d;
+
+    animation: frameAppear 1.2s ease forwards;
+}
+
+
+@keyframes frameAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.8)
+            rotateX(10deg);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotateX(0);
+    }
+}
+
+
+/* =====================================================
+   3D DOOR SIDE
+===================================================== */
+
+.door-side {
+
+    position: absolute;
+
+    top: 18px;
+
+    right: -28px;
+
+    width: 28px;
+
+    height: calc(100% - 36px);
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #3b2818,
+            #120c07
+        );
+
+    transform:
+        skewY(-45deg);
+
+    transform-origin: left;
+}
+
+
+/* =====================================================
+   MAIN WOODEN DOOR
+===================================================== */
+
+.door {
+
+    width: 100%;
+
+    height: 100%;
+
+    position: relative;
+
+    overflow: hidden;
+
+    transform-origin: left center;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #2b170b 0%,
+            #63391d 15%,
+            #8b552d 30%,
+            #5b3018 48%,
+            #8a522c 65%,
+            #43230f 82%,
+            #241208 100%
+        );
+
+    box-shadow:
+
+        inset 5px 0 10px rgba(0,0,0,0.7),
+
+        inset -5px 0 10px rgba(0,0,0,0.8),
+
+        inset 0 0 30px rgba(0,0,0,0.4);
+}
+
+
+/* =====================================================
+   WOOD GRAIN
+===================================================== */
+
+.wood-grain {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        repeating-linear-gradient(
+            3deg,
+            transparent 0px,
+            transparent 12px,
+            rgba(35,16,6,0.28) 13px,
+            transparent 16px
+        ),
+
+        repeating-linear-gradient(
+            87deg,
+            rgba(255,255,255,0.04) 0px,
+            transparent 3px,
+            transparent 20px
+        );
+
+    opacity: 0.8;
+}
+
+
+/* =====================================================
+   WOOD PANELS
+===================================================== */
+
+.wood-panel {
+
+    position: absolute;
+
+    left: 8%;
+
+    width: 84%;
+
+    border:
+
+        2px solid
+        rgba(37,18,8,0.8);
+
+    box-shadow:
+
+        inset 0 0 25px rgba(0,0,0,0.45),
+
+        0 0 3px rgba(255,190,110,0.15);
+}
+
+
+.panel-top {
+
+    top: 6%;
+
+    height: 30%;
+}
+
+
+.panel-middle {
+
+    top: 37%;
+
+    height: 27%;
+}
+
+
+.panel-bottom {
+
+    top: 66%;
+
+    height: 28%;
+}
+
+
+/* =====================================================
+   DOOR HANDLE
+===================================================== */
+
+.door-handle {
+
+    position: absolute;
+
+    right: 8%;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 90px;
+
+    height: 150px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+/* =====================================================
+   LOCK
+===================================================== */
+
+.lock {
+
+    position: relative;
+
+    width: 65px;
+
+    height: 80px;
+
+    cursor: pointer;
+
+    z-index: 20;
+
+    transition:
+        transform 0.3s ease,
+        filter 0.3s ease;
+}
+
+
+.lock:hover {
+
+    transform: scale(1.12);
+
+    filter:
+        drop-shadow(
+            0 0 12px
+            rgba(255,210,120,0.8)
+        );
+}
+
+
+.lock-body {
+
+    position: absolute;
+
+    bottom: 0;
+
+    left: 7px;
+
+    width: 51px;
+
+    height: 52px;
+
+    border-radius: 7px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #f4d37a,
+            #9c7025,
+            #e2b94e,
+            #694914
+        );
+
+    border: 2px solid #f4d37a;
+
+    box-shadow:
+
+        0 8px 15px rgba(0,0,0,0.6),
+
+        inset 2px 2px 5px rgba(255,255,255,0.35),
+
+        inset -3px -3px 6px rgba(0,0,0,0.5);
+}
+
+
+.lock-shackle {
+
+    position: absolute;
+
+    width: 34px;
+
+    height: 35px;
+
+    border:
+
+        6px solid
+        #d5ae4c;
+
+    border-bottom: none;
+
+    border-radius:
+        20px 20px 0 0;
+
+    top: 2px;
+
+    left: 16px;
+}
+
+
+.keyhole {
+
+    width: 10px;
+
+    height: 16px;
+
+    background: #241707;
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform: translate(-50%, -35%);
+
+    border-radius: 50% 50% 3px 3px;
+}
+
+
+.keyhole::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 5px;
+
+    height: 10px;
+
+    background: #241707;
+
+    left: 50%;
+
+    top: 9px;
+
+    transform: translateX(-50%);
+}
+
+
+/* =====================================================
+   LOCK MESSAGE
+===================================================== */
+
+.lock-message {
+
+    display: none;
+
+    margin-top: 28px;
+
+    color: #9ba4b5;
+
+    font-size:
+        clamp(10px, 1.5vw, 14px);
+
+    letter-spacing: 3px;
+
+    text-align: center;
+
+    animation:
+        messagePulse 2s ease-in-out infinite;
+}
+
+
+.lock-message.show {
+
+    display: block;
+}
+
+
+.message-symbol {
+
+    color: #d0a34a;
+
+    margin: 0 10px;
+}
+
+
+@keyframes messagePulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* =====================================================
+   DOOR OPEN
+===================================================== */
+
+.door.open {
+
+    animation:
+        doorOpening 1.8s
+        cubic-bezier(0.6,0,0.2,1)
+        forwards;
+}
+
+
+@keyframes doorOpening {
+
+    from {
+
+        transform:
+            rotateY(0deg);
+    }
+
+    to {
+
+        transform:
+            rotateY(-105deg);
+    }
+}
+
+
+/* =====================================================
+   MEMORY VIEWER
+===================================================== */
+
+.memory-viewer {
+
+    display: none;
+
+    width: 100%;
+
+    height: 100vh;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            #171a22,
+            #050609 75%
+        );
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding:
+        30px
+        clamp(15px, 5vw, 70px);
+}
+
+
+.memory-viewer.active {
+
+    display: flex;
+}
+
+
+.memory-number {
+
+    position: absolute;
+
+    top: 35px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: #777f90;
+
+    font-size:
+        clamp(10px, 1.5vw, 14px);
+
+    letter-spacing: 4px;
+}
+
+
+/* =====================================================
+   IMAGE CONTAINER
+===================================================== */
+
+.image-container {
+
+    width: 100%;
+
+    height: 82vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    overflow: hidden;
+}
+
+
+.image-container img {
+
+    max-width: 100%;
+
+    max-height: 100%;
+
+    width: auto;
+
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 4px;
+
+    box-shadow:
+
+        0 30px 80px rgba(0,0,0,0.8);
+
+    opacity: 0;
+
+    transform: scale(0.8);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+
+/* Image appears */
+
+.image-container img.show {
+
+    opacity: 1;
+
+    transform: scale(1);
+}
+
+
+/* =====================================================
+   BREAKING EFFECT
+===================================================== */
+
+.image-container img.break {
+
+    animation:
+        imageBreak 1s
+        ease-in
+        forwards;
+}
+
+
+@keyframes imageBreak {
+
+    0% {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0deg);
+    }
+
+    20% {
+
+        transform:
+            scale(1.03)
+            rotate(-1deg);
+    }
+
+    40% {
+
+        opacity: 0.8;
+
+        transform:
+            scale(1.06)
+            rotate(2deg);
+    }
+
+    60% {
+
+        opacity: 0.45;
+
+        transform:
+            scale(1.12)
+            rotate(-3deg);
+    }
+
+    80% {
+
+        opacity: 0.15;
+
+        transform:
+            scale(1.18)
+            rotate(4deg);
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            scale(1.3)
+            rotate(-6deg);
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .page {
+
+        padding:
+            35px
+            15px
+            40px;
+    }
+
+
+    .main-heading {
+
+        letter-spacing: 2px;
+
+        line-height: 1.3;
+    }
+
+
+    .sub-heading {
+
+        letter-spacing: 2px;
+
+        margin-bottom: 25px;
+    }
+
+
+    .door-area {
+
+        min-height: 550px;
+    }
+
+
+    .construction-box {
+
+        width: 88vw;
+
+        height: 58vh;
+
+        min-height: 330px;
+    }
+
+
+    .door-frame {
+
+        width: 82vw;
+
+        height: 68vh;
+
+        min-height: 430px;
+
+        padding: 12px;
+    }
+
+
+    .door-side {
+
+        right: -18px;
+
+        width: 18px;
+    }
+
+
+    .door-handle {
+
+        right: 5%;
+
+        transform:
+            translateY(-50%)
+            scale(0.8);
+    }
+
+
+    .lock-message {
+
+        line-height: 2;
+
+        padding:
+            0 20px;
+    }
+
+
+    .image-container {
+
+        width: 100%;
+
+        height: 78vh;
+    }
+
+
+    .image-container img {
+
+        max-width: 100%;
+
+        max-height: 78vh;
+
+        object-fit: contain;
+    }
+}
+/* =====================================================
+   DOOR CONSTRUCTION ANIMATION
+===================================================== */
+
+@keyframes constructBox {
+
+    0% {
+        opacity: 1;
+        transform: scale(1);
+        border-color: #323946;
+    }
+
+    20% {
+        border-color: #6c7485;
+        box-shadow:
+            0 0 20px rgba(255,255,255,0.08);
+    }
+
+    40% {
+        transform: scale(1.015);
+        border-color: #9aa3b5;
+    }
+
+    60% {
+        box-shadow:
+            0 0 45px rgba(255,255,255,0.12);
+    }
+
+    80% {
+        transform: scale(1.025);
+        border-color: #c1c8d3;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.04);
+    }
+}
+/* =====================================================
+   MEMORY TEXT
+===================================================== */
+
+.memory-text {
+
+    width: min(90vw, 850px);
+
+    margin-top: 20px;
+
+    text-align: center;
+
+    font-family:
+        "Segoe UI",
+        sans-serif;
+
+    font-size:
+        clamp(15px, 2vw, 23px);
+
+    line-height: 1.6;
+
+    letter-spacing: 0.5px;
+
+    color: #d8dce5;
+
+    opacity: 0;
+
+    transform:
+        translateY(15px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+
+    padding:
+        0 15px;
+}
+
+
+.memory-text.show {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* =====================================================
+   NEXT ARROW
+===================================================== */
+
+.next-arrow {
+
+    position: absolute;
+
+    right:
+        clamp(20px, 5vw, 70px);
+
+    bottom:
+        clamp(25px, 6vh, 55px);
+
+    width: 62px;
+
+    height: 62px;
+
+    border-radius: 50%;
+
+    border: 1px solid #555e70;
+
+    background:
+        rgba(255,255,255,0.04);
+
+    color: #ffffff;
+
+    font-size: 32px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease;
+
+    z-index: 150;
+}
+
+
+.next-arrow:hover {
+
+    transform:
+        translateX(6px)
+        scale(1.08);
+
+    background:
+        rgba(255,255,255,0.10);
+
+    border-color:
+        #aeb7c7;
+}
+
+
+/* Arrow animation */
+
+.next-arrow {
+
+    animation:
+        arrowPulse 1.8s ease-in-out infinite;
+}
+
+
+@keyframes arrowPulse {
+
+    0%,
+    100% {
+        transform:
+            translateX(0);
+    }
+
+    50% {
+        transform:
+            translateX(6px);
+    }
+}
+
+
+/* =====================================================
+   IMAGE VIEWER LAYOUT
+===================================================== */
+
+.memory-viewer {
+
+    gap: 0;
+
+    justify-content:
+        center;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .memory-text {
+
+        font-size: 15px;
+
+        line-height: 1.5;
+
+        margin-top: 15px;
+
+        padding:
+            0 25px;
+    }
+
+
+    .next-arrow {
+
+        width: 52px;
+
+        height: 52px;
+
+        font-size: 27px;
+
+        right: 18px;
+
+        bottom: 18px;
+    }
+}

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>From The Heart Of The Developer</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Handwriting-style fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- =========================
+         BACKGROUND DEVELOPER UI
+    ========================== -->
+
+    <div class="background-grid"></div>
+
+    <div class="code-decoration code-left">
+        &lt;developer&gt;<br>
+        &nbsp;&nbsp;initializing...<br>
+        &nbsp;&nbsp;feelings = true;<br>
+        &nbsp;&nbsp;heart.load();<br>
+        &lt;/developer&gt;
+    </div>
+
+    <div class="code-decoration code-right">
+        const feeling = "∞";<br>
+        let heart = new Heart();<br>
+        heart.beat();<br>
+        heart.connect();
+    </div>
+
+
+    <!-- =========================
+         LOADING SCREEN
+    ========================== -->
+
+    <section id="loadingScreen" class="screen active">
+
+        <div class="terminal-window">
+
+            <div class="terminal-header">
+                <div class="terminal-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="terminal-content">
+
+                <div class="terminal-line">
+                    <span class="prompt">></span>
+                    <span id="loadingMessage">
+                        Initializing developer...
+                    </span>
+                </div>
+
+                <div class="loading-number">
+                    <span id="loadingPercentage">0</span><span>%</span>
+                </div>
+
+                <div class="progress-container">
+                    <div id="progressBar"></div>
+                </div>
+
+                <div class="loading-status">
+                    <span id="loadingStatus">
+                        Preparing something special...
+                    </span>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         HEART EXPERIENCE
+    ========================== -->
+
+    <section id="heartScreen" class="screen">
+
+        <div class="heart-container">
+
+            <!-- Main title -->
+            <div id="developerMessage" class="developer-message">
+                FROM THE HEART OF THE DEVELOPER
+            </div>
+
+
+            <!-- Heart drawing -->
+            <div id="heartStage" class="heart-stage">
+
+                <!-- SVG allows us to animate the heart drawing -->
+                <svg
+                    class="heart-svg"
+                    viewBox="0 0 300 270"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+
+                    <!-- Glow -->
+                    <path
+                        class="heart-glow"
+                        d="M150 245
+                           C135 228 35 165 35 88
+                           C35 45 65 20 102 20
+                           C125 20 143 33 150 53
+                           C157 33 175 20 198 20
+                           C235 20 265 45 265 88
+                           C265 165 165 228 150 245Z"
+                    />
+
+                    <!-- Main heart outline -->
+                    <path
+                        id="heartPath"
+                        class="heart-outline"
+                        d="M150 245
+                           C135 228 35 165 35 88
+                           C35 45 65 20 102 20
+                           C125 20 143 33 150 53
+                           C157 33 175 20 198 20
+                           C235 20 265 45 265 88
+                           C265 165 165 228 150 245Z"
+                    />
+
+                    <!-- Filled heart -->
+                    <path
+                        id="heartFill"
+                        class="heart-fill"
+                        d="M150 245
+                           C135 228 35 165 35 88
+                           C35 45 65 20 102 20
+                           C125 20 143 33 150 53
+                           C157 33 175 20 198 20
+                           C235 20 265 45 265 88
+                           C265 165 165 228 150 245Z"
+                    />
+
+                    <!-- Whitish realistic highlights -->
+                    <ellipse
+                        class="heart-highlight"
+                        cx="105"
+                        cy="82"
+                        rx="24"
+                        ry="45"
+                        transform="rotate(-35 105 82)"
+                    />
+
+                    <ellipse
+                        class="heart-highlight-small"
+                        cx="132"
+                        cy="54"
+                        rx="8"
+                        ry="15"
+                        transform="rotate(-35 132 54)"
+                    />
+
+                    <path
+                        class="heart-shine"
+                        d="M75 73 C82 51 105 43 120 52"
+                    />
+
+                </svg>
+
+
+                <!-- Pumping particles are created by JS -->
+                <div id="particleContainer"></div>
+
+            </div>
+
+
+            <!-- Final message -->
+            <div id="ladyMessage" class="lady-message">
+                TO THE LADY MIRACLE
+            </div>
+
+
+            <!-- Next button -->
+            <button id="nextButton" class="next-heart-button" disabled>
+
+                <span class="button-heart">♥</span>
+
+                <span class="button-text">
+                    TAP HERE FOR NEXT
+                </span>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
