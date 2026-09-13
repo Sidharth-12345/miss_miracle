@@ -18,16 +18,16 @@ const CONFIG = {
 ============================== */
 
 const images = [
-    "WhatsApp Unknown 2026-09-12 at 3.29.45 AM/first.jpeg",
-    "WhatsApp Unknown 2026-09-12 at 3.29.45 AM/second.jpeg",
-    "WhatsApp Unknown 2026-09-12 at 3.29.45 AM/third.jpeg",
-    "WhatsApp Unknown 2026-09-12 at 3.29.45 AM/fourth.jpeg",
-    "WhatsApp Unknown 2026-09-12 at 3.29.45 AM/fifth.jpeg",
+    "first.jpeg",
+    "second.jpeg",
+    "third.jpeg",
+    "fourth.jpeg",
+    "fifth.jpeg",
     //"WhatsApp Unknown 2026-09-12 at 3.29.45 AM/Sixth.jpeg",
-    "WhatsApp Unknown 2026-09-12 at 3.29.45 AM/Seventh.jpeg",
-    "WhatsApp Unknown 2026-09-12 at 3.29.45 AM/Eighth.jpeg",
-    "WhatsApp Unknown 2026-09-12 at 3.29.45 AM/Ninth.jpeg",
-    "WhatsApp Unknown 2026-09-12 at 3.29.45 AM/tenth.jpeg"
+    "Seventh.jpeg",
+    "Eighth.jpeg",
+    "Ninth.jpeg",
+    "tenth.jpeg"
 ];
 
 
